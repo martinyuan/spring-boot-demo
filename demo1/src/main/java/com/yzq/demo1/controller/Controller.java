@@ -13,7 +13,8 @@ import io.swagger.annotations.ApiOperation;
 public class Controller {
 
 	@ApiOperation(value = "欢迎首页", notes = "根据输入返回提示信息")
-	@ApiImplicitParams({ @ApiImplicitParam(name = "name", value = "用户名", required = false, dataType = "String",paramType="query") })
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "name", value = "用户名", required = false, dataType = "String", paramType = "query") })
 	@RequestMapping(value = "/hello", method = RequestMethod.GET)
 	public String index(String name) {
 		if (StringUtils.isEmpty(name)) {
@@ -23,4 +24,9 @@ public class Controller {
 		}
 	}
 
+	@ApiOperation(value = "错误方法测试", notes = "根据输入返回提示信息")
+	@RequestMapping(value = "/error", method = RequestMethod.GET)
+	public String error() {
+		throw new RuntimeException("发生错误");
+	}
 }
