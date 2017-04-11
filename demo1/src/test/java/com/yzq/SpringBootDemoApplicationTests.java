@@ -7,6 +7,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -17,6 +18,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import com.yzq.demo1.controller.Controller;
 
 @RunWith(SpringRunner.class)
+@SpringBootConfiguration
 @SpringBootTest
 public class SpringBootDemoApplicationTests {
 
@@ -29,7 +31,8 @@ public class SpringBootDemoApplicationTests {
 
 	@Test
 	public void getHello() throws Exception {
-		mvc.perform(MockMvcRequestBuilders.get("/hello").accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
-				.andExpect(content().string(equalTo("Hello World")));
+		mvc.perform(MockMvcRequestBuilders.get("/hello?name=martin").accept(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk()).andExpect(content().string(equalTo("Hello martin")));
 	}
+
 }
