@@ -23,10 +23,4 @@ public class Controller {
 			return "Hello " + name;
 		}
 	}
-
-	@ApiOperation(value = "错误方法测试", notes = "根据输入返回提示信息")
-	@RequestMapping(value = "/error", method = RequestMethod.GET)
-	public String error() {
-		throw new RuntimeException("发生错误");
-	}
 }
